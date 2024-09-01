@@ -8,7 +8,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello from api');
+    res.send('Hello from killer-resume-api123');
+});
+
+app.get('/api', (req: Request, res: Response) => {
+  res.send('Hello from apps/api');
 });
 
 app.listen(PORT, () => {
