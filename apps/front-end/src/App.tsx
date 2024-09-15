@@ -1,27 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+
+import './App.css'
 import config from './utils/app.config';
+import { toTitleCase } from './utils/string';
 
 function App() {
-  const [data, setData] = useState('');
+  const [data, setData] = useState<string>();
 
   useEffect(() => {
-    fetch(config.apiUrl)
-      .then((response) => {
+    const fetchDataForPosts = async () => {
+      try {
+        const response = await fetch(config.apiUrl);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error(`HTTP error: Status ${response.status}`);
         }
-        return response.text();
-      })
-      .then((data) => {
-        setData(data);
-      })
-  }, []);
+        console.log({response})
 
+        const postsData = await response.text();
+        setData(postsData);
+      } catch (err) {
+        setData(undefined);
+      }
+    };
+
+    fetchDataForPosts();
+  }, [])
   return (
-    <div>
-        {data}
-    </div>
-  );
+    <>
+      <h1 className='heading'>{config.appName}</h1>
+      <h3>{toTitleCase(data ?? "no data from server")}</h3>
+    </>
+  )
 }
 
-export default App;
+export default App
