@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:unit": "vitest"
+    "test:unit": "vitest --config tests/config/vitest.config.ts",
+    "test:e2e": "playwright test --config tests/config/playwright.config.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@playwright/test": "^1.47.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -23,6 +25,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "playwright": "^1.47.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.4.0",
